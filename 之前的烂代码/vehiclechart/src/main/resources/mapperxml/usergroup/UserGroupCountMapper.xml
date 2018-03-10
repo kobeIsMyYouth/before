@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="team.hfut.vehiclechart.mapper.usergroup.UserGroupCountMapper">
+	<resultMap id="BaseResultMap" type="team.hfut.vehiclechart.bean.usergroup.UserGroupCountBean">
+		<id column="id" property="id" />
+		<result column="user_type" property="user_type" />
+		<result column="count_title" property="count_title" />
+		<result column="count_value" property="count_value" />
+		<result column="count_unit" property="count_unit" />
+		<result column="value_type" property="value_type" />
+		<result column="create_time" property="create_time" />
+		<result column="version" property="version" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		user_type,count_title,count_value,count_unit,value_type
+	</sql>
+
+	<select id="selectCountList" resultType="map" parameterType="string">
+		SELECT count_title,value_type,IF(value_type = 'text',GROUP_CONCAT(DISTINCT count_value SEPARATOR '，'),IF(value_type = 'number',SUM(count_value),ROUND(SUM(count_value),2))) count_value,count_unit FROM `result_usergroup_count`
+		<if test="user_type != 'all'.toString()  ">
+			WHERE find_in_set(user_type,#{user_type})
+		</if>
+		GROUP BY sort
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from result_usergroup_count
+		where id = #{id}
+	</select>
+
+	<select id="selectList" resultMap="BaseResultMap"
+		parameterType="team.hfut.vehiclechart.bean.usergroup.UserGroupCountBean">
+		select
+		<include refid="Base_Column_List" />
+		from result_usergroup_count
+		<where>
+			<if test="id != null   ">
+				and id = #{id}
+			</if>
+			<if test="user_type != 'all'.toString()  ">
+				and find_in_set(user_type,#{user_type})
+			</if>
+			<if test="count_title != null and count_title != ''  ">
+				and count_title = #{count_title}
+			</if>
+			<if test="count_value != null and count_value != ''  ">
+				and count_value = #{count_value}
+			</if>
+			<if test="count_unit != null and count_unit != ''  ">
+				and count_unit = #{count_unit}
+			</if>
+			<if test="value_type != null and value_type != ''  ">
+				and value_type = #{value_type}
+			</if>
+			<if test="create_time != null and create_time != ''  ">
+				and create_time = #{create_time}
+			</if>
+			<if test="version != null   ">
+				and version = #{version}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectCount" resultType="int"
+		parameterType="team.hfut.vehiclechart.bean.usergroup.UserGroupCountBean">
+		select count(0)
+		from result_usergroup_count
+		<where>
+			<if test="id != null  ">
+				and id = #{id}
+			</if>
+			<if test="user_type != null and user_type != '' ">
+				and user_type = #{user_type}
+			</if>
+			<if test="count_title != null and count_title != '' ">
+				and count_title = #{count_title}
+			</if>
+			<if test="count_value != null and count_value != '' ">
+				and count_value = #{count_value}
+			</if>
+			<if test="count_unit != null and count_unit != '' ">
+				and count_unit = #{count_unit}
+			</if>
+			<if test="value_type != null and value_type != '' ">
+				and value_type = #{value_type}
+			</if>
+			<if test="create_time != null and create_time != '' ">
+				and create_time = #{create_time}
+			</if>
+			<if test="version != null  ">
+				and version = #{version}
+			</if>
+		</where>
+	</select>
+</mapper>

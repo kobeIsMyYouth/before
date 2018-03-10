@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="team.hfut.vehiclechart.mapper.userchart.UserDrivingMileageMapper">
+
+	<select id="selectResultList" resultType="map" parameterType="string">
+		SELECT group_name,mileage FROM `result_user_drivingmileage`
+		WHERE user_id = #{user_id}
+		ORDER BY sort ASC
+	</select>
+</mapper>

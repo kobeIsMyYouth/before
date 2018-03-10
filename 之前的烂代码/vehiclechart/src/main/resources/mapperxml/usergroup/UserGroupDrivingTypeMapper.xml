@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="team.hfut.vehiclechart.mapper.usergroup.UserGroupDrivingTypeMapper">
+	<resultMap id="BaseResultMap" type="team.hfut.vehiclechart.bean.usergroup.UserGroupDrivingTypeBean">
+		<id column="id" property="id" />
+		<result column="user_type" property="user_type" />
+		<result column="group_name" property="group_name" />
+		<result column="mileage" property="mileage" />
+		<result column="sort" property="sort" />
+		<result column="create_time" property="create_time" />
+		<result column="version" property="version" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,user_type,group_name,mileage,order,create_time,version
+	</sql>
+	
+	<select id="selectTreeList" resultType="map" parameterType="team.hfut.vehiclechart.bean.usergroup.UserGroupDrivingTypeBean">
+		SELECT group_name,MAX(mileage) max,AVG(mileage) avg FROM result_usergroup_drivingtype
+		<where>
+			<if test="user_type != 'all'.toString()">
+				and find_in_set(user_type,#{user_type})
+			</if>
+			<if test="group_name != null and group_name != ''  ">
+				and group_name = #{group_name}
+			</if>
+			<if test="version != null   ">
+				and version = #{version}
+			</if>
+		</where>
+		GROUP BY group_name
+		ORDER BY sort
+	</select>
+	
+	<select id="selectStrList" resultType="map" parameterType="team.hfut.vehiclechart.bean.usergroup.UserGroupDrivingTypeBean">
+		set @num := 0, @group_name := '',@user_type := '';
+		SELECT GROUP_CONCAT(temp1.mileage ORDER BY RAND()) FROM (SELECT user_type,group_name,mileage,@num := if(@group_name=group_name and @user_type=user_type, @num + 1, 1) as row_number,
+		@group_name := group_name as other_group,@user_type := user_type as other_type FROM `result_usergroup_drivingtype`
+		ORDER BY group_name,user_type) temp1 
+		<where>
+			<if test="user_type != 'all'.toString()">
+				and find_in_set(temp1.user_type,#{user_type})
+			</if>
+			<if test="group_name != null and group_name != ''  ">
+				and temp1.group_name = #{group_name}
+			</if>
+			<if test="version != null   ">
+				and temp1.version = #{version}
+			</if>
+		</where>
+		GROUP BY temp1.group_name
+		ORDER BY temp1.group_name ASC
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from result_usergroup_drivingtype
+		where id = #{id}
+	</select>
+
+	<select id="selectList" resultMap="BaseResultMap"
+		parameterType="team.hfut.vehiclechart.bean.usergroup.UserGroupDrivingTypeBean">
+		select
+		<include refid="Base_Column_List" />
+		from result_usergroup_drivingtype
+		<where>
+			<if test="id != null   ">
+				and id = #{id}
+			</if>
+			<if test="user_type != null and user_type != ''  ">
+				and user_type = #{user_type}
+			</if>
+			<if test="group_name != null and group_name != ''  ">
+				and group_name = #{group_name}
+			</if>
+			<if test="mileage != null   ">
+				and mileage = #{mileage}
+			</if>
+			<if test="create_time != null and create_time != ''  ">
+				and create_time = #{create_time}
+			</if>
+			<if test="version != null   ">
+				and version = #{version}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectCount" resultType="int"
+		parameterType="team.hfut.vehiclechart.bean.usergroup.UserGroupDrivingTypeBean">
+		select count(0)
+		from result_usergroup_drivingtype
+		<where>
+			<if test="id != null  ">
+				and id = #{id}
+			</if>
+			<if test="user_type != null and user_type != '' ">
+				and user_type = #{user_type}
+			</if>
+			<if test="group_name != null and group_name != '' ">
+				and group_name = #{group_name}
+			</if>
+			<if test="mileage != null  ">
+				and mileage = #{mileage}
+			</if>
+			<if test="create_time != null and create_time != '' ">
+				and create_time = #{create_time}
+			</if>
+			<if test="version != null  ">
+				and version = #{version}
+			</if>
+		</where>
+	</select>
+</mapper>

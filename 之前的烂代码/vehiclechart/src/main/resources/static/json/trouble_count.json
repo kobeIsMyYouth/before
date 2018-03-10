@@ -1,0 +1,11 @@
+[ {
+	"count_title" : "故障数量",
+	"count_value" : "128242",
+	"count_unit" : "个",
+	"value_type" : "number"
+}, {
+	"count_title" : "涉及故障类别",
+	"count_value" : "18",
+	"count_unit" : "类",
+	"value_type" : "number"
+} ]

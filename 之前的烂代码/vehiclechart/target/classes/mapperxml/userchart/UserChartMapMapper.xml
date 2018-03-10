@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="team.hfut.vehiclechart.mapper.userchart.UserChartMapMapper">
+	<resultMap id="BaseResultMap" type="team.hfut.vehiclechart.bean.userchart.UserChartMapBean">
+		<id column="id" property="id" />
+		<result column="user_id" property="user_id" />
+		<result column="lat" property="lat" />
+		<result column="lng" property="lng" />
+		<result column="province" property="province" />
+		<result column="address" property="address" />
+		<result column="create_time" property="create_time" />
+		<result column="version" property="version" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		user_id,lat,lng,province,address
+	</sql>
+
+	<select id="selectCountList" resultType="map" parameterType="string">
+		SELECT COUNT(DISTINCT user_id) count_value,'用户数' count_title,'number' value_type,'位' count_unit FROM `result_user_map`
+		WHERE province LIKE CONCAT(#{province},'%')
+		UNION 
+		SELECT FLOOR(COUNT(DISTINCT user_id)*0.9) count_value,'在线数' count_title,'number' value_type,'位' count_unit FROM `result_user_map`
+		WHERE province LIKE CONCAT(#{province},'%')
+	</select>
+
+	<select id="selectResultList" resultType="map" parameterType="string">
+		SELECT user_id,address `name`,CONCAT(lng,',',lat) `value` FROM `result_user_map`
+		WHERE province LIKE CONCAT(#{province},'%')
+	</select>
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="string">
+		select
+		<include refid="Base_Column_List" />
+		from result_user_map
+		where id = #{id}
+	</select>
+
+	<select id="selectList" resultMap="BaseResultMap"
+		parameterType="team.hfut.vehiclechart.bean.userchart.UserChartMapBean">
+		select
+		<include refid="Base_Column_List" />
+		from result_user_map
+		<where>
+			<if test="id != null   ">
+				and id = #{id}
+			</if>
+			<if test="user_id != null and user_id != ''  ">
+				and user_id = #{user_id}
+			</if>
+			<if test="lat != null   ">
+				and lat = #{lat}
+			</if>
+			<if test="lng != null   ">
+				and lng = #{lng}
+			</if>
+			<if test="province != null and province != ''  ">
+				and province = #{province}
+			</if>
+			<if test="address != null and address != ''  ">
+				and address = #{address}
+			</if>
+			<if test="create_time != null and create_time != ''  ">
+				and create_time = #{create_time}
+			</if>
+			<if test="version != null   ">
+				and version = #{version}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectCount" resultType="int"
+		parameterType="team.hfut.vehiclechart.bean.userchart.UserChartMapBean">
+		select count(0)
+		from result_user_map
+		<where>
+			<if test="id != null  ">
+				and id = #{id}
+			</if>
+			<if test="user_id != null and user_id != '' ">
+				and user_id = #{user_id}
+			</if>
+			<if test="lat != null  ">
+				and lat = #{lat}
+			</if>
+			<if test="lng != null  ">
+				and lng = #{lng}
+			</if>
+			<if test="province != null and province != '' ">
+				and province = #{province}
+			</if>
+			<if test="address != null and address != '' ">
+				and address = #{address}
+			</if>
+			<if test="create_time != null and create_time != '' ">
+				and create_time = #{create_time}
+			</if>
+			<if test="version != null  ">
+				and version = #{version}
+			</if>
+		</where>
+	</select>
+</mapper>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>个体用户画像</title>
+<link type="text/css" rel="stylesheet" href="/static/css/font-awesome.min.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/public.css" />
+<link type="text/css" rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+
+	<input id="province" type="hidden" th:value="${province}" value="安徽" />
+	<div class="individualuser">
+		<div class="head headbg">
+			<span class="backstep fl"> <a href="usergroups.html" onClick="javascript :history.back(-1);"><i class="fa fa-angle-double-left mr5"></i>返回</a>
+			</span> <span>个体用户画像</span>
+		</div>
+		<div class="userleft wb60">
+			<div class="content">
+				<div class="userchart-box pdr300">
+					<!--
+                        	作者：offline
+                        	时间：2017-09-24
+                        	描述：个体用户画像Echart，userechart-1.js
+                        -->
+					<div id="userchart" class="fulllayout"></div>
+
+					<!--
+                        	作者：offline
+                        	时间：2017-10-07
+                        	描述：细节统计
+                        -->
+					<div class="chartdetail-box">
+						<div class="d-item">
+							<div class="i-title">用户数</div>
+							<div class="i-content pdt40">
+								<input class="largeLable" type="hidden" value="393668" data-unit="个" data-type="nuber" />
+							</div>
+						</div>
+						<div class="d-item">
+							<div class="i-title">在线数</div>
+							<div class="i-content pdt40">
+								<input class="largeLable" type="hidden" value="23124" data-unit="位" data-type="nuber" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="userright wb40">
+			<div class="item fl wb50 hb33_3 pdt10 pdr5">
+				<div class="dtitle">用户概况</div>
+				<div class="content pdt35">
+					<!--
+                        	作者：offline
+                        	时间：2017-09-24
+                        	描述：活动地点分布Echart,userechart-2.js
+                        -->
+					<div id="userlabel" class="fulllayout">
+					</div>
+				</div>
+			</div>
+			<div class="item fl wb50 hb33_3 pdt10 pdl5">
+				<div class="dtitle">用户活动点分布</div>
+				<div class="content pdt35">
+					<!--
+                        	作者：offline
+                        	时间：2017-09-24
+                        	描述：活动地点分布Echart,userechart-2.js
+                        -->
+					<div id="sitedistribution" class="fulllayout"></div>
+				</div>
+			</div>
+			<div class="item fl wb50 hb33_3 pdt10 pdr5">
+				<div class="dtitle">驾驶时间偏好</div>
+				<div class="content pdt35">
+					<!--
+                        	作者：offline
+                        	时间：2017-09-24
+                        	描述：驾驶时间偏好Echart,userechart-5.js
+                        -->
+					<div id="drivingtime" class="fulllayout"></div>
+				</div>
+			</div>
+			<div class="item fl wb50 hb33_3 pdt10 pdl5">
+				<div class="dtitle">充电时间偏好</div>
+				<div class="content pdt35">
+					<!--
+                        	作者：offline
+                        	时间：2017-09-24
+                        	描述：充电时间偏好Echart,userechart-4.js
+                        -->
+					<div id="charging" class="fulllayout"></div>
+				</div>
+			</div>
+			<div class="item fl wb50 hb33_3 pdt10 pdr5">
+				<div class="dtitle">驾驶里程</div>
+				<div class="content pdt35">
+					<!--
+                        	作者：offline
+                        	时间：2017-09-24
+                        	描述：驾驶里程Echart,userechart-3.js
+                        -->
+					<div id="drivingmileage" class="fulllayout"></div>
+				</div>
+			</div>
+			<div class="item fl wb50 hb33_3 pdt10 pdl5">
+				<div class="dtitle">驾驶安全</div>
+				<div class="content pdt35">
+					<!--
+                        	作者：offline
+                        	时间：2017-09-24
+                        	描述：驾驶安全Echart,userechart-6.js
+                        -->
+					<div id="drivingsafe" class="fulllayout"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="mask-layout"></div>
+	<script type="text/javascript" src="/static/js/jquery/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/static/js/echarts/echarts.js"></script>
+		<script type="text/javascript" src="/static/js/echarts/echarts-wordcloud.min.js"></script>
+	<script type="text/javascript" src="/static/js/publicConfig.js"></script>
+	<script type="text/javascript" src="/static/js/echarts/provincemap.js"></script>
+	<!--
+        	作者：offline
+        	时间：2017-09-24
+        	描述：demojs
+        -->
+	<script type="text/javascript" src="/static/js/user-chart-1.js"></script>
+	<script type="text/javascript" src="/static/js/user-chart-2.js"></script>
+	<script type="text/javascript" src="/static/js/user-chart-3.js"></script>
+	<script type="text/javascript" src="/static/js/user-chart-4.js"></script>
+	<script type="text/javascript" src="/static/js/user-chart-5.js"></script>
+	<script type="text/javascript" src="/static/js/user-chart-6.js"></script>
+	<script type="text/javascript" src="/static/js/user-chart-7.js"></script>
+	<!--end-->
+	<script type="text/javascript" src="/static/js/user.js"></script>
+
+</body>
+</html>

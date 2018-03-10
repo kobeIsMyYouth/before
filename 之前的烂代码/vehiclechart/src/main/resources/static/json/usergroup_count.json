@@ -1,0 +1,16 @@
+[ {
+	"count_title" : "用户数量",
+	"count_value" : "1242",
+	"count_unit" : "位",
+	"value_type" : "number"
+}, {
+	"count_title" : "用户类别占比",
+	"count_value" : "47.53",
+	"count_unit" : "%",
+	"value_type" : "fraction"
+}, {
+	"count_title" : "主要分布地区",
+	"count_value" : "华东，华北，华中",
+	"count_unit" : "",
+	"value_type" : "text"
+} ]

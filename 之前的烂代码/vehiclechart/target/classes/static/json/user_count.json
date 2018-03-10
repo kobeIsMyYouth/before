@@ -1,0 +1,11 @@
+[ {
+	"count_title" : "用户数",
+	"count_value" : "1242",
+	"count_unit" : "位",
+	"value_type" : "number"
+}, {
+	"count_title" : "在线数",
+	"count_value" : "47",
+	"count_unit" : "位",
+	"value_type" : "number"
+} ]

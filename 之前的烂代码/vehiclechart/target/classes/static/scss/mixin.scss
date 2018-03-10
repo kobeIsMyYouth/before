@@ -1,0 +1,85 @@
+@mixin transition($transition){
+    -webkit-transition: $transition;
+    -moz-transition: $transition;
+    -ms-transition: $transition;
+    -o-transition: $transition;
+    transition: $transition;
+}
+@mixin transform($transform){
+    transform:rotate($transform);
+    -ms-transform:rotate($transform);     /* IE 9 */
+    -moz-transform:rotate($transform);    /* Firefox */
+    -webkit-transform:rotate($transform); /* Safari 和 Chrome */
+    -o-transform:rotate($transform);  /* Opera */
+}
+@mixin scale($scale){
+    -webkit-transform: scale($scale);
+    -moz-transform: scale($scale);
+    -ms-transform: scale($scale);
+    -o-transform: scale($scale);
+    transform: scale($scale);
+}
+
+@mixin radius($radius){
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin topleftradius($radius){
+    -webkit-border-top-left-radius: $radius;
+    -moz-border-top-left-radius: $radius;
+    -ms-border-top-left-radius: $radius;
+    -o-border-top-left-radius: $radius;
+    border-top-left-radius: $radius;
+} 
+
+@mixin toprightradius($radius){
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-top-right-radius: $radius;
+    -ms-border-top-right-radius: $radius;
+    -o-border-top-right-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin bottomleftradius($radius){
+    -webkit-border-bottom-left-radius: $radius;
+    -moz-border-bottom-left-radius: $radius;
+    -ms-border-bottom-left-radius: $radius;
+    -o-border-bottom-left-radius: $radius;
+    border-bottom-left-radius: $radius;              
+}
+ 
+@mixin bottomrightradius($radius){
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-bottom-right-radius: $radius;
+    -ms-border-bottom-right-radius: $radius;
+    -o-border-bottom-right-radius: $radius;
+    border-bottom-right-radius: $radius;              
+} 
+
+@mixin transform-origin($origin){
+    -webkit-transform-origin: $origin $origin;
+    -moz-transform-origin: $origin $origin;
+    -ms-transform-origin: $origin $origin;
+    -o-transform-origin: $origin $origin;
+    transform-origin: $origin $origin;
+}
+
+@mixin opacity($opacity){
+    opacity: $opacity;
+    filter: alpha(opacity=$opacity * 100);
+}
+
+@mixin overflowellipsis(){
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+@mixin boxshaow($shadow){
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
